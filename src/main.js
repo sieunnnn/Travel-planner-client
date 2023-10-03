@@ -15,7 +15,7 @@ library.add(fas) // font awsome
 library.add(far)
 
 const app = createApp(App) // 앱 생성
-app.config.globalProperties.$axios = axios // axios / http 통신
+axios.defaults.baseURL = 'https://dev.travel-planner.xyz';
 // app.use(router) // 라우터 사용 설정
 app.use(store)
 app.component('font-awesome-icon', FontAwesomeIcon) // font awsome
