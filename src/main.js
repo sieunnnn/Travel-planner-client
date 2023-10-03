@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import axios from 'axios'
+import store from "./store";
 // import router from './router/router'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {library} from "@fortawesome/fontawesome-svg-core";
@@ -15,5 +16,6 @@ library.add(far)
 const app = createApp(App) // 앱 생성
 app.config.globalProperties.$axios = axios // axios / http 통신
 // app.use(router) // 라우터 사용 설정
+app.use(store)
 app.component('font-awesome-icon', FontAwesomeIcon) // font awsome
 app.mount('#app') // 렌더링 시작점
