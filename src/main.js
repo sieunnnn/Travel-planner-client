@@ -9,6 +9,7 @@ import {fas} from "@fortawesome/free-solid-svg-icons";
 import {far} from "@fortawesome/free-regular-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css" // bootstrap
 import "bootstrap"
+import './assets/styles/typo.css';
 
 library.add(fas) // font awsome
 library.add(far)
