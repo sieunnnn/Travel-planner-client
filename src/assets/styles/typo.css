@@ -43,3 +43,18 @@
     font-family: 'pre-black';
     src: url('../fonts/Pretendard-Black.ttf') format('truetype');
 }
+
+.title {
+    font-family: 'pre-black', sans-serif;
+    font-size: 50px;
+    color: #1E1E1C;
+    top: 30px;
+    position: fixed;
+    z-index: 999;
+}
+
+.feed_title {
+    font-family: 'pre-bold', sans-serif;
+    font-size: 24px;
+    color: #1E1E1C;
+}
