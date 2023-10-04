@@ -13,7 +13,7 @@ const goToLogin = () => {
     </div>
     <div class="signup_content">
       <div class="signup_title">
-        signup
+        Signup
       </div>
       <div class="signup_form">
         <form>
