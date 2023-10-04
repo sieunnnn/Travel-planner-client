@@ -1,9 +1,9 @@
 <script setup>
-  import SearchBox from "../components/common/SearchBox.vue";
-  import { ref, computed, onMounted } from "vue";
-  import axios from "axios";
+import SearchBox from "../components/common/SearchBox.vue";
+import {computed, onMounted, ref} from "vue";
+import axios from "axios";
 
-  const feedData = ref([]);
+const feedData = ref([]);
 
   const fetchData = async () => {
     try {
@@ -11,8 +11,8 @@
       feedData.value = response.data.content;
       console.log(response.data.content)
 
-    } catch (error) {
-      console.log("error: ", error);
+    } catch (e) {
+      console.log("error: ", e);
     }
   }
 
@@ -22,6 +22,19 @@
     const today = new Date();
     return today.getMonth() + 1;
   })
+
+const handleFeedSearch = async (query) => {
+  try {
+    const params = new URLSearchParams();
+    params.append('planTitle', query);
+
+    const response = await axios.get('/feed', { params });
+    feedData.value = response.data.content;
+
+  } catch (e) {
+    console.log("error: ", e);
+  }
+};
 
 </script>
 
@@ -33,7 +46,7 @@
 
     <!-- 검색 -->
     <div>
-      <SearchBox style="position:fixed; top: 100px; z-index: 999"/>
+      <SearchBox @search="handleFeedSearch" style="position:fixed; top: 100px; z-index: 999"/>
     </div>
 
     <!-- 리스트 -->
