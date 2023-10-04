@@ -1,10 +1,19 @@
 <script setup>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { ref, defineEmits } from 'vue';
+
+const query = ref('');
+const emit = defineEmits();
+
+const emitSearchQuery = () => {
+  emit('search', query.value);
+};
+
 </script>
 
 <template>
-  <form>
-    <input type="search" class="search-box">
+  <form @submit.prevent="emitSearchQuery">
+    <input type="search" v-model="query" class="search-box">
     <button type="submit" class="search-button">
       <font-awesome-icon icon="fa-solid fa-magnifying-glass" style="margin-right: 5px" />
       <span>검색</span>
