@@ -2,23 +2,20 @@
   import { computed } from 'vue';
   import { useStore } from 'vuex';
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
 
+  const router = useRouter();
   const store = useStore();
   const isLoggedIn = computed(() => store.getters.isLoggedIn);
 
-  const toggleLogin = () => {
-    if (isLoggedIn.value) {
-    store.dispatch('logOut');
+  const toggleLogin = (e) => {
+    if (!isLoggedIn.value) {
+      e.preventDefault();
+      router.push('/auth/login');
     } else {
-      store.dispatch('logIn');
+      store.dispatch('logOut');
     }
   };
-
-  const activeMenu = ref(null);
-  const setActiveMenu = (menu) => {
-    activeMenu.value = menu;
-  }
 
 </script>
 
@@ -37,47 +34,38 @@
     <!-- 메뉴 리스트 -->
     <div class="menu-container">
       <div class="menu-contents">
-        <div
-            class="menu-lists"
-            @click="setActiveMenu('planner')"
-            :class="{ 'active': activeMenu === 'planner' }">
+        <router-link to="/planner" class="menu-lists" active-class="active">
           <font-awesome-icon icon="fa-regular fa-calendar" style="margin: 0 11px 0 18px" />
           <span>PLANNER</span>
-        </div>
-        <div
-            class="menu-lists"
-            @click="setActiveMenu('post')"
-            :class="{ 'active': activeMenu === 'post' }">
+        </router-link>
+
+        <router-link to="/post" class="menu-lists" active-class="active">
           <font-awesome-icon icon="fa-solid fa-images" style="margin: 0 10px 0 15px" />
           <span>POST</span>
-        </div>
-        <div
-            class="menu-lists"
-            @click="setActiveMenu('message')"
-            :class="{ 'active': activeMenu === 'message' }">
+        </router-link>
+
+        <router-link to="/message" class="menu-lists" active-class="active">
           <font-awesome-icon icon="fa-regular fa-envelope" style="margin: 0 10px 0 17px"/>
           <span>MESSAGE</span>
-        </div>
-        <div
-            class="menu-lists"
-            @click="setActiveMenu('feed')"
-            :class="{ 'active': activeMenu === 'feed' }">
+        </router-link>
+
+        <router-link to="/feed" class="menu-lists" active-class="active">
           <font-awesome-icon icon="fa-solid fa-list" style="margin: 0 10px 0 17px" />
           <span>FEED</span>
-        </div>
-        <div
-            class="menu-lists"
-            @click="setActiveMenu('community')"
-            :class="{ 'active': activeMenu === 'community' }">
+        </router-link>
+
+        <router-link to="/community" class="menu-lists" active-class="active">
           <font-awesome-icon icon="fa-solid fa-earth-americas" style="margin: 0 8px 0 18px" />
           <span>COMMUNITY</span>
-        </div>
+        </router-link>
+
         <div>
           <label class="switch">
-            <input type="checkbox" v-model="isLoggedIn" @change="toggleLogin">
+            <input type="checkbox" :checked="isLoggedIn.value" @click.prevent="toggleLogin">
             <span class="slider"></span>
           </label>
         </div>
+
       </div>
     </div>
   </div>
@@ -162,11 +150,13 @@
     border-radius: 7px;
     font-size: 20px;
     color: #1E1E1C;
+    text-decoration: none;
   }
 
   .menu-lists.active {
     background-color: #007AFF;
     color: white;
+    text-decoration: none;
   }
 
   .switch {
