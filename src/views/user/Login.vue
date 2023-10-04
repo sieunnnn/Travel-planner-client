@@ -1,9 +1,45 @@
 <script setup>
+  import { ref, computed } from "vue";
   import { useRouter } from 'vue-router';
+  import { useStore } from "vuex";
+  import axios from "axios";
+
   const router = useRouter();
+  const store = useStore();
+
   const goToSignup = () => {
     router.push('/auth/signup');
   };
+
+  const email = ref('');
+  const password = ref('');
+
+  const login = async () => {
+    try {
+      const response = await axios.post('/auth/login', {
+        email: email.value,
+        password: password.value
+      });
+
+      if (response.status === 200) {
+        const accessToken = response.headers.authorization; // Authorization 아님
+        // console.log(response.headers) <- 찍어서 헤더 확인하기
+
+        if (accessToken) {
+          sessionStorage.setItem('accessToken', accessToken);
+        }
+        store.commit('setLoginUser', response.data);
+        await router.push('/feed') // 일단 feed 로 리다이렉트
+      }
+
+    } catch (error) {
+      console.error("로그인 에러: ", error);
+    }
+  }
+
+  const user = computed(() => store.state.loginUser);
+  console.log(user.value.loginUser);
+
 </script>
 
 <template>
@@ -17,10 +53,10 @@
       </div>
       <div class="login_form">
         <form>
-          <input type="text" placeholder="이메일을 입력해주세요."><br>
-          <input type="password" placeholder="비밀번호를 입력해주세요."><br>
+          <input v-model="email" type="text" placeholder="이메일을 입력해주세요."><br>
+          <input v-model="password" type="password" placeholder="비밀번호를 입력해주세요."><br>
           <div class="login_button_container">
-            <button type="submit" style="background: #007AFF;">로그인</button>
+            <button @click.prevent="login" style="background: #007AFF;">로그인</button>
             <button @click.prevent="goToSignup" style="background: #8E8E93;">회원 가입</button>
           </div>
         </form>
