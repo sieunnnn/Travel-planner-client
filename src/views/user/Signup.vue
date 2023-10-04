@@ -1,5 +1,9 @@
 <script setup>
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const goToLogin = () => {
+  router.push('/auth/login');
+};
 </script>
 
 <template>
@@ -20,6 +24,7 @@
           <p>* 비밀번호는 8 ~ 15 자리 이하, 영문, 숫자, 특수문자를 조합하여 만들어주세요.</p>
           <div class="signup_button_container">
             <button type="submit" style="background: #007AFF;">회원 가입</button>
+            <button @click.prevent="goToLogin" style="background: #8E8E93;">로그인</button>
           </div>
         </form>
       </div>
@@ -111,9 +116,9 @@
 
 .signup_button_container button {
   width: 49%;
-  height: 37px;
+  height: 35px;
   flex-shrink: 0;
-  margin-top: 8px;
+  margin: 10px 5px 45px 5px;
 
   font-family: 'pre-medium', sans-serif;
   border-radius: 10px;
@@ -121,4 +126,5 @@
   outline: none;
   color: white;
 }
+
 </style>

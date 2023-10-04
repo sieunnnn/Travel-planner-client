@@ -1,5 +1,9 @@
 <script setup>
-
+  import { useRouter } from 'vue-router';
+  const router = useRouter();
+  const goToSignup = () => {
+    router.push('/auth/signup');
+  };
 </script>
 
 <template>
@@ -17,7 +21,7 @@
           <input type="password" placeholder="비밀번호를 입력해주세요."><br>
           <div class="login_button_container">
             <button type="submit" style="background: #007AFF;">로그인</button>
-            <button style="background: #8E8E93;">회원 가입</button>
+            <button @click.prevent="goToSignup" style="background: #8E8E93;">회원 가입</button>
           </div>
         </form>
       </div>
@@ -78,9 +82,9 @@
 
   .login_form input {
     width: 100%;
-    height: 38px;
+    height: 37px;
     flex-shrink: 0;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 
     border-radius: 10px;
     border: 1px solid #1E1E1C;
@@ -107,9 +111,9 @@
 
   .login_button_container button {
     width: 49%;
-    height: 35px;
+    height: 36px;
     flex-shrink: 0;
-    margin: 10px 5px 45px 5px;
+    margin: 13px 5px 45px 5px;
 
     font-family: 'pre-medium', sans-serif;
     border-radius: 10px;
