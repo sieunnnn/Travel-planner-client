@@ -116,7 +116,7 @@ const goToLogin = () => {
 
 .signup_button_container button {
   width: 49%;
-  height: 35px;
+  height: 36px;
   flex-shrink: 0;
   margin: 10px 5px 45px 5px;
 
