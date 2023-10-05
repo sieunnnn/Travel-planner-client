@@ -1,23 +1,24 @@
 <script setup xmlns="http://www.w3.org/1999/html">
-  import { computed } from 'vue';
   import { useStore } from 'vuex';
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
   import { useRouter } from 'vue-router';
   import axios from "axios";
+  import {computed} from "vue";
 
   const router = useRouter();
   const store = useStore();
 
   const user = computed(() => store.state.loginUser);
-  const userProfileImgUrl = user.value && user.value.loginUser && user.value.loginUser.profileImgUrl;
+  const userProfileImgUrl = computed(() => store.getters.getUserProfileImgUrl);
   const isLoggedIn = computed(() => user.value && user.value.isLoggedIn);
 
   const logout = async () => {
     try {
-      const response = await axios.post('/auth/logout')
+      const response = await axios.post('/auth/logout');
       if (response.status === 200) {
-        sessionStorage.removeItem('accessToken')
-        store.commit('logout')
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('userInfo');
+        store.commit('logout');
       }
     } catch (error) {
       console.log(error);

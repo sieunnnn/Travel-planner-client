@@ -23,11 +23,17 @@ const login = async () => {
 
     if (response.status === 200) {
       const accessToken = response.headers.authorization;
+      const userInfo = response.data;
+      console.log(userInfo);
 
       if (accessToken) {
         sessionStorage.setItem('accessToken', accessToken);
       }
-      store.commit('setLoginUser', response.data); // 'userStore/' 추가
+      if (userInfo) {
+        sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+      }
+
+      store.commit('setLoginUser', userInfo);
       await router.push('/feed');
     }
   } catch (error) {

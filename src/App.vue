@@ -11,6 +11,11 @@
       store.dispatch('logout');
     }
   });
+
+  const storedUserInfo = sessionStorage.getItem('userInfo');
+  if (storedUserInfo) {
+    store.commit('setLoginUser', JSON.parse(storedUserInfo));
+  }
 </script>
 
 <template>

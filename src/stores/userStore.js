@@ -18,7 +18,10 @@ export default ({
 
     getters: {
         isLoggedIn: state => state.isLoggedIn,
-        loginUser: state => state.loginUser
+        loginUser: state => state.loginUser,
+        getUserProfileImgUrl: (state) => {
+            return state.loginUser && state.loginUser.profileImgUrl;
+        }
     },
 
     actions: {
