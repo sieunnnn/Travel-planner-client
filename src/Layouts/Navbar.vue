@@ -1,24 +1,37 @@
-<script setup>
+<script setup xmlns="http://www.w3.org/1999/html">
   import { computed } from 'vue';
   import { useStore } from 'vuex';
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
   import { useRouter } from 'vue-router';
+  import axios from "axios";
 
   const router = useRouter();
   const store = useStore();
-  const isLoggedIn = computed(() => store.getters.isLoggedIn);
-
-  const toggleLogin = (e) => {
-    if (!isLoggedIn.value) {
-      e.preventDefault();
-      router.push('/auth/login');
-    } else {
-      store.dispatch('logOut');
-    }
-  };
 
   const user = computed(() => store.state.loginUser);
-  const userProfileImgUrl = user.value.loginUser.profileImgUrl;
+  const userProfileImgUrl = user.value && user.value.loginUser && user.value.loginUser.profileImgUrl;
+  const isLoggedIn = computed(() => user.value && user.value.isLoggedIn);
+
+  const logout = async () => {
+    try {
+      const response = await axios.post('/auth/logout')
+      if (response.status === 200) {
+        sessionStorage.removeItem('accessToken')
+        store.commit('logout')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const toggleLogin = () => {
+    if (!isLoggedIn.value) {
+
+      router.push('/auth/login');
+    } else {
+      logout()
+    }
+  };
 
 </script>
 
@@ -32,7 +45,7 @@
     <!-- 유저 프로필 이미지 -->
     <div class="img-container">
       <div class="img-contents">
-        <img v-if="user" :src="userProfileImgUrl" width="125" style="margin: 5px 0 0 5px"/>
+        <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125" style="margin: 5px 0 0 5px"/>
         <img v-else src="../assets/images/basic_profile.svg" width="125" style="margin: 5px 0 0 5px"/>
       </div>
     </div>
@@ -67,7 +80,7 @@
 
         <div>
           <label class="switch">
-            <input type="checkbox" :checked="isLoggedIn.value" @click.prevent="toggleLogin">
+            <input type="checkbox" :checked="isLoggedIn"  @click.prevent="toggleLogin">
             <span class="slider"></span>
           </label>
         </div>

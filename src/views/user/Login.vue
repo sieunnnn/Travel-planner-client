@@ -1,46 +1,41 @@
 <script setup>
-  import { ref, computed } from "vue";
-  import { useRouter } from 'vue-router';
-  import { useStore } from "vuex";
-  import axios from "axios";
+import { ref } from "vue";
+import { useRouter } from 'vue-router';
+import { useStore } from "vuex";
+import axios from "axios";
 
-  const router = useRouter();
-  const store = useStore();
+const router = useRouter();
+const store = useStore();
 
-  const goToSignup = () => {
-    router.push('/auth/signup');
-  };
+const goToSignup = () => {
+  router.push('/auth/signup');
+};
 
-  const email = ref('');
-  const password = ref('');
+const email = ref('');
+const password = ref('');
 
-  const login = async () => {
-    try {
-      const response = await axios.post('/auth/login', {
-        email: email.value,
-        password: password.value
-      });
+const login = async () => {
+  try {
+    const response = await axios.post('/auth/login', {
+      email: email.value,
+      password: password.value
+    });
 
-      if (response.status === 200) {
-        const accessToken = response.headers.authorization; // Authorization 아님
-        // console.log(response.headers) <- 찍어서 헤더 확인하기
+    if (response.status === 200) {
+      const accessToken = response.headers.authorization;
 
-        if (accessToken) {
-          sessionStorage.setItem('accessToken', accessToken);
-        }
-        store.commit('setLoginUser', response.data);
-        await router.push('/feed') // 일단 feed 로 리다이렉트
+      if (accessToken) {
+        sessionStorage.setItem('accessToken', accessToken);
       }
-
-    } catch (error) {
-      console.error("로그인 에러: ", error);
+      store.commit('setLoginUser', response.data); // 'userStore/' 추가
+      await router.push('/feed');
     }
+  } catch (error) {
+    console.error("로그인 에러: ", error);
   }
-
-  const user = computed(() => store.state.loginUser);
-  console.log(user.value.loginUser);
-
+}
 </script>
+
 
 <template>
   <div class="login_container">
