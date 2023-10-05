@@ -1,6 +1,47 @@
 <script setup>
+import { ref } from "vue";
+import { useRouter } from 'vue-router';
+import { useStore } from "vuex";
+import axios from "axios";
 
+const router = useRouter();
+const store = useStore();
+
+const goToSignup = () => {
+  router.push('/auth/signup');
+};
+
+const email = ref('');
+const password = ref('');
+
+const login = async () => {
+  try {
+    const response = await axios.post('/auth/login', {
+      email: email.value,
+      password: password.value
+    });
+
+    if (response.status === 200) {
+      const accessToken = response.headers.authorization;
+      const userInfo = response.data;
+      console.log(userInfo);
+
+      if (accessToken) {
+        sessionStorage.setItem('accessToken', accessToken);
+      }
+      if (userInfo) {
+        sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+      }
+
+      store.commit('setLoginUser', userInfo);
+      await router.push('/feed');
+    }
+  } catch (error) {
+    console.error("로그인 에러: ", error);
+  }
+}
 </script>
+
 
 <template>
   <div class="login_container">
@@ -13,18 +54,24 @@
       </div>
       <div class="login_form">
         <form>
-          <input type="text" placeholder="이메일을 입력해주세요."><br>
-          <input type="password" placeholder="비밀번호를 입력해주세요."><br>
+          <input v-model="email" type="text" placeholder="이메일을 입력해주세요."><br>
+          <input v-model="password" type="password" placeholder="비밀번호를 입력해주세요."><br>
           <div class="login_button_container">
-            <button type="submit" style="background: #007AFF;">로그인</button>
-            <button style="background: #8E8E93;">회원 가입</button>
+            <button @click.prevent="login" style="background: #007AFF;">로그인</button>
+            <button @click.prevent="goToSignup" style="background: #8E8E93;">회원 가입</button>
           </div>
         </form>
       </div>
       <div class="social_login_container">
-        <img src="../../assets/images/google_login_button.svg" />
-        <img src="../../assets/images/naver_login_button.svg" />
-        <img src="../../assets/images/kakao_login_button.svg" />
+        <a :href="'https://dev.travel-planner.xyz/oauth/authorize/google'">
+          <img src="../../assets/images/google_login_button.svg" />
+        </a>
+        <a :href="'https://dev.travel-planner.xyz/oauth/authorize/naver'">
+          <img src="../../assets/images/naver_login_button.svg" />
+        </a>
+        <a :href="'https://dev.travel-planner.xyz/oauth/authorize/kakao'">
+          <img src="../../assets/images/kakao_login_button.svg" />
+        </a>
       </div>
     </div>
   </div>
@@ -78,9 +125,9 @@
 
   .login_form input {
     width: 100%;
-    height: 38px;
+    height: 37px;
     flex-shrink: 0;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 
     border-radius: 10px;
     border: 1px solid #1E1E1C;
@@ -107,9 +154,9 @@
 
   .login_button_container button {
     width: 49%;
-    height: 35px;
+    height: 36px;
     flex-shrink: 0;
-    margin: 10px 5px 45px 5px;
+    margin: 13px 5px 45px 5px;
 
     font-family: 'pre-medium', sans-serif;
     border-radius: 10px;

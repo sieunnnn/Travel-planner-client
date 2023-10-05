@@ -1,10 +1,10 @@
 <script setup>
-import Feed from "../views/Feed.vue";
+
 </script>
 
 <template>
   <div class="content-container">
-    <Feed />
+    <router-view />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ import Feed from "../views/Feed.vue";
 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
   }
 

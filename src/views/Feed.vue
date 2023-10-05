@@ -83,9 +83,9 @@ const handleFeedSearch = async (query) => {
     position: fixed;
     overflow-y: scroll;
     margin-top: 200px;
-    width: fit-content;
+    width: 57%;
     height: 70%;
-    bottom: 0
+    bottom: 0;
   }
 
   .feed_planner_list_container::-webkit-scrollbar {
@@ -97,7 +97,7 @@ const handleFeedSearch = async (query) => {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 750px;
+    width: 100%;
     height: 70px;
     margin-bottom: 15px;
 
