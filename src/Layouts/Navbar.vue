@@ -1,4 +1,4 @@
-<script setup xmlns="http://www.w3.org/1999/html">
+<script setup>
   import { useStore } from 'vuex';
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
   import { useRouter } from 'vue-router';
