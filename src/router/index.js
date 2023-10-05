@@ -2,12 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import Feed from '../views/Feed.vue';
 import Login from '../views/user/Login.vue';
 import Signup from "../views/user/Signup.vue";
+import Oauth from "../views/user/Oauth.vue";
 
 const routes = [
-    {
-        path: '/feed',
-        component: Feed
-    },
     {
         path: '/auth/login',
         component: Login
@@ -15,6 +12,14 @@ const routes = [
     {
         path: '/auth/signup',
         component: Signup
+    },
+    {
+        path:'/oauth/callback',
+        component: Oauth
+    },
+    {
+        path: '/feed',
+        component: Feed
     }
 ];
 

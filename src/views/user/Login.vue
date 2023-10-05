@@ -63,9 +63,15 @@ const login = async () => {
         </form>
       </div>
       <div class="social_login_container">
-        <img src="../../assets/images/google_login_button.svg" />
-        <img src="../../assets/images/naver_login_button.svg" />
-        <img src="../../assets/images/kakao_login_button.svg" />
+        <a :href="'https://dev.travel-planner.xyz/oauth/authorize/google'">
+          <img src="../../assets/images/google_login_button.svg" />
+        </a>
+        <a :href="'https://dev.travel-planner.xyz/oauth/authorize/naver'">
+          <img src="../../assets/images/naver_login_button.svg" />
+        </a>
+        <a :href="'https://dev.travel-planner.xyz/oauth/authorize/kakao'">
+          <img src="../../assets/images/kakao_login_button.svg" />
+        </a>
       </div>
     </div>
   </div>
