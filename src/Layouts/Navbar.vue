@@ -17,6 +17,9 @@
     }
   };
 
+  const user = computed(() => store.state.loginUser);
+  const userProfileImgUrl = user.value.loginUser.profileImgUrl;
+
 </script>
 
 <template>
@@ -28,7 +31,10 @@
 
     <!-- 유저 프로필 이미지 -->
     <div class="img-container">
-      <div class="img-contents"></div>
+      <div class="img-contents">
+        <img v-if="user" :src="userProfileImgUrl" width="125" style="margin: 5px 0 0 5px"/>
+        <img v-else src="../assets/images/basic_profile.svg" width="125" style="margin: 5px 0 0 5px"/>
+      </div>
     </div>
 
     <!-- 메뉴 리스트 -->
@@ -114,6 +120,14 @@
   }
 
   .img-contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 999999;
+
+    padding: 0;
     width: 120px;
     height: 120px;
     border-radius: 120px;
