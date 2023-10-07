@@ -46,7 +46,7 @@ const handleFeedSearch = async (query) => {
 
     <!-- 검색 -->
     <div>
-      <SearchBox @search="handleFeedSearch" style="position:fixed; top: 100px; z-index: 999"/>
+      <SearchBox @search="handleFeedSearch" style="position:relative; top: 30px; z-index: 999"/>
     </div>
 
     <!-- 리스트 -->
