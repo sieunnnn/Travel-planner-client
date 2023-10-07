@@ -1,0 +1,27 @@
+
+    .input {
+        border-radius: 10px;
+        border: 1px solid #1E1E1C;
+        background: rgba(255, 255, 255, 0.90);
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10) inset;
+    }
+
+    .input:focus {
+        border: none;
+        outline: 2.5px solid rgba(58, 108, 217, 0.6);
+    }
+
+    .edit_form {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0;
+    }
+
+    .edit_input {
+        font-size: 20px;
+        padding-left: 10px;
+        width: 78%;
+        margin-right: 6px;
+    }

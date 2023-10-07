@@ -1,0 +1,15 @@
+
+.box {
+    background: rgba(255, 255, 255, 0.80);
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.20);
+    border-radius: 20px;
+    border: 1px #1E1E1C solid;
+    backdrop-filter: blur(40px);
+}
+
+.list_box {
+    border-radius: 15px;
+    border: 1px solid #1E1E1C;
+    background: rgba(255, 255, 255, 0.90);
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
+}

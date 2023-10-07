@@ -40,18 +40,18 @@ const handleFeedSearch = async (query) => {
 
 <template>
   <div class="feed-container">
-    <div class="title">
+    <div class="title" style="top: 40px; position: relative;">
       FEED
     </div>
 
     <!-- 검색 -->
     <div>
-      <SearchBox @search="handleFeedSearch" style="position:fixed; top: 100px; z-index: 999"/>
+      <SearchBox @search="handleFeedSearch" style="position:relative; top: 30px; z-index: 999"/>
     </div>
 
     <!-- 리스트 -->
     <div class="feed_planner_list_container">
-      <div v-for="planner in feedData" :key="planner.plannerId" class="feed_planner_list">
+      <div v-for="planner in feedData" :key="planner.plannerId" class="feed_planner_list list_box">
         <div class="feed_profile">
           <img v-if="planner.hostUrl" :src="planner.hostUrl" width="40" alt="Profile Image" />
           <img v-else src="../assets/images/basic_profile.svg" width="40" alt="Default Image" />
@@ -100,11 +100,6 @@ const handleFeedSearch = async (query) => {
     width: 100%;
     height: 70px;
     margin-bottom: 15px;
-
-    border-radius: 15px;
-    border: 1px solid #1E1E1C;
-    background: rgba(255, 255, 255, 0.90);
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
   }
 
   .feed_profile {

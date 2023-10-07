@@ -48,7 +48,12 @@
     font-family: 'pre-black', sans-serif;
     font-size: 50px;
     color: #1E1E1C;
-    top: 30px;
-    position: fixed;
+    z-index: 999;
+}
+
+.sub_title {
+    font-family: 'pre-medium', sans-serif;
+    font-size: 30px;
+    color: #1E1E1C;
     z-index: 999;
 }

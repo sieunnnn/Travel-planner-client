@@ -10,6 +10,15 @@ import {far} from "@fortawesome/free-regular-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css" // bootstrap
 import "bootstrap"
 import './assets/styles/typo.css';
+import './assets/styles/box.css';
+import './assets/styles/input.css';
+import './assets/styles/button.css';
+import './assets/styles/img.css';
+import './assets/styles/etc.css';
+
+
+
+
 
 library.add(fas) // font awsome
 library.add(far)

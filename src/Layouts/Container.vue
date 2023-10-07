@@ -6,7 +6,7 @@ import Content from "./Content.vue";
 
 <template>
   <div class="container">
-    <div class="contents">
+    <div class="contents box">
       <Navbar />
       <Content />
     </div>
@@ -30,11 +30,5 @@ import Content from "./Content.vue";
     grid-template-columns:
   [linename1] minmax(235px, 1fr) [linename2] 5fr;
     height: 85%;
-
-    background: rgba(255, 255, 255, 0.80);
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.20);
-    border-radius: 20px;
-    border: 1px #1E1E1C solid;
-    backdrop-filter: blur(40px);
   }
 </style>

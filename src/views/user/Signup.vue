@@ -73,7 +73,7 @@
 </script>
 
 <template>
-  <div class="signup_container">
+  <div class="signup_container box">
     <div class="signup_logo_container">
       <img src="../../assets/images/logo_big.svg" width="160" style="margin: 15px 15px 5px 0">
     </div>
@@ -83,15 +83,15 @@
       </div>
       <div class="signup_form">
         <form>
-          <input type="text" v-model="email" placeholder="이메일을 입력해주세요."><br>
-          <input type="text" v-model="userNickname" placeholder="닉네임을 입력해주세요."><br>
-          <input type="password" v-model="password" placeholder="비밀번호를 입력해주세요."><br>
-          <input type="password" v-model="confirmPassword" placeholder="비밀번호를 다시한번 입력해 주세요."><br>
+          <input class="input" type="text" v-model="email" placeholder="이메일을 입력해주세요."><br>
+          <input class="input" type="text" v-model="userNickname" placeholder="닉네임을 입력해주세요."><br>
+          <input class="input" type="password" v-model="password" placeholder="비밀번호를 입력해주세요."><br>
+          <input class="input" type="password" v-model="confirmPassword" placeholder="비밀번호를 다시한번 입력해 주세요."><br>
           <p v-if="passwordError">{{ passwordError }}</p>
           <p v-else-if="!passwordError"></p>
           <div class="signup_button_container">
-            <button @click.prevent="signUp" style="background: #007AFF;">회원 가입</button>
-            <button @click.prevent="goToLogin" style="background: #8E8E93;">로그인</button>
+            <button @click.prevent="signUp" class="blue_button">회원 가입</button>
+            <button @click.prevent="goToLogin" class="gray_button">로그인</button>
           </div>
         </form>
       </div>
@@ -108,12 +108,6 @@
   width: 40%;
   height: 85%;
   flex-shrink: 0;
-
-  border-radius: 20px;
-  border: 1px solid #1E1E1C;
-  background: rgba(255, 255, 255, 0.80);
-  box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.20);
-  backdrop-filter: blur(20px);
 }
 
 .signup_content {
@@ -151,18 +145,8 @@
   flex-shrink: 0;
   margin-bottom: 15px;
 
-  border-radius: 10px;
-  border: 1px solid #1E1E1C;
-  background: rgba(255, 255, 255, 0.90);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10) inset;
-
   padding-left: 10px;
   font-size: 17px;
-}
-
-.signup_form input:focus {
-  outline: none;
-  border: 2.5px solid rgba(58, 108, 217, 0.6);
 }
 
 .signup_form p {
@@ -186,12 +170,6 @@
   height: 36px;
   flex-shrink: 0;
   margin: 10px 5px 45px 5px;
-
-  font-family: 'pre-medium', sans-serif;
-  border-radius: 10px;
-  border: 1px solid #1E1E1C;
-  outline: none;
-  color: white;
 }
 
 </style>

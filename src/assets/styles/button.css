@@ -1,0 +1,18 @@
+
+    .blue_button {
+        font-family: 'pre-medium', sans-serif;
+        border-radius: 10px;
+        border: 1px solid #1E1E1C;
+        outline: none;
+        color: white;
+        background: #007AFF;
+    }
+
+    .gray_button {
+        font-family: 'pre-medium', sans-serif;
+        border-radius: 10px;
+        border: 1px solid #1E1E1C;
+        outline: none;
+        color: white;
+        background: #8E8E93;
+    }

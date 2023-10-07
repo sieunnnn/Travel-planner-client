@@ -23,7 +23,7 @@ const emitSearchQuery = () => {
 
 <style scoped>
   form {
-    position: fixed;
+    position: relative;
   }
 
   .search-box {
