@@ -12,6 +12,8 @@ import "bootstrap"
 import './assets/styles/typo.css';
 import './assets/styles/box.css';
 import './assets/styles/input.css';
+import './assets/styles/button.css';
+
 
 
 library.add(fas) // font awsome

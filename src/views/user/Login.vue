@@ -57,8 +57,8 @@ const login = async () => {
           <input v-model="email" type="text" placeholder="이메일을 입력해주세요." class="input"><br>
           <input v-model="password" type="password" placeholder="비밀번호를 입력해주세요." class="input"><br>
           <div class="login_button_container">
-            <button @click.prevent="login" style="background: #007AFF;">로그인</button>
-            <button @click.prevent="goToSignup" style="background: #8E8E93;">회원 가입</button>
+            <button @click.prevent="login" class="blue_button">로그인</button>
+            <button @click.prevent="goToSignup" class="gray_button">회원 가입</button>
           </div>
         </form>
       </div>
@@ -141,12 +141,6 @@ const login = async () => {
     height: 36px;
     flex-shrink: 0;
     margin: 13px 5px 45px 5px;
-
-    font-family: 'pre-medium', sans-serif;
-    border-radius: 10px;
-    border: 1px solid #1E1E1C;
-    outline: none;
-    color: white;
   }
 
   .social_login_container {

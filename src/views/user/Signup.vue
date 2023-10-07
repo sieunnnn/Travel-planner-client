@@ -90,8 +90,8 @@
           <p v-if="passwordError">{{ passwordError }}</p>
           <p v-else-if="!passwordError"></p>
           <div class="signup_button_container">
-            <button @click.prevent="signUp" style="background: #007AFF;">회원 가입</button>
-            <button @click.prevent="goToLogin" style="background: #8E8E93;">로그인</button>
+            <button @click.prevent="signUp" class="blue_button">회원 가입</button>
+            <button @click.prevent="goToLogin" class="gray_button">로그인</button>
           </div>
         </form>
       </div>
@@ -170,12 +170,6 @@
   height: 36px;
   flex-shrink: 0;
   margin: 10px 5px 45px 5px;
-
-  font-family: 'pre-medium', sans-serif;
-  border-radius: 10px;
-  border: 1px solid #1E1E1C;
-  outline: none;
-  color: white;
 }
 
 </style>
