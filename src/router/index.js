@@ -6,6 +6,7 @@ import Oauth from "../views/user/Oauth.vue";
 import Profile from "../views/Profile.vue";
 import UserDelete from "../components/profile/UserDelete.vue";
 import UserEdit from "../components/profile/UserEdit.vue";
+import UserDetail from "../components/profile/UserDetail.vue";
 
 const routes = [
     {
@@ -28,6 +29,10 @@ const routes = [
         path: '/profile',
         component: Profile,
         children: [
+            {
+              path: '',
+              component: UserDetail
+            },
             {
                 path:'update',
                 component: UserEdit
