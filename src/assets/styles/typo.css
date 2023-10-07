@@ -48,8 +48,6 @@
     font-family: 'pre-black', sans-serif;
     font-size: 50px;
     color: #1E1E1C;
-    top: 40px;
-    position: relative;
     z-index: 999;
 }
 
@@ -57,7 +55,5 @@
     font-family: 'pre-medium', sans-serif;
     font-size: 30px;
     color: #1E1E1C;
-    top: 50px;
-    position: relative;
     z-index: 999;
 }

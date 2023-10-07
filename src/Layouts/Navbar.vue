@@ -44,11 +44,13 @@
     <div class="line"></div>
 
     <!-- 유저 프로필 이미지 -->
-    <div class="img-container">
-      <div class="img-contents">
-        <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125" style="margin: 5px 0 0 5px"/>
-        <img v-else src="../assets/images/basic_profile.svg" width="125" style="margin: 5px 0 0 5px"/>
-      </div>
+    <div class="img-container" style="width: 100%; margin: 50px 0 35px 0">
+      <router-link to="/profile">
+        <div class="img-contents">
+          <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125" style="margin: 5px 0 0 5px"/>
+          <img v-else src="../assets/images/basic_profile.svg" width="125" style="margin: 5px 0 0 5px"/>
+        </div>
+      </router-link>
     </div>
 
     <!-- 메뉴 리스트 -->
@@ -115,37 +117,6 @@
 
   .logo-container {
     width: 100%;
-  }
-
-  .line {
-    width: 100%;
-    height: 1px;
-    border-top: 1px #1E1E1C solid
-  }
-
-  .img-container {
-    margin: 50px 0 35px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 150px;
-  }
-
-  .img-contents {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    z-index: 999999;
-
-    padding: 0;
-    width: 120px;
-    height: 120px;
-    border-radius: 120px;
-    border: 1px solid #1E1E1C;
   }
 
   .menu-container {

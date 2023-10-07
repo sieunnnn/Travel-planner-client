@@ -13,6 +13,10 @@ import './assets/styles/typo.css';
 import './assets/styles/box.css';
 import './assets/styles/input.css';
 import './assets/styles/button.css';
+import './assets/styles/img.css';
+import './assets/styles/etc.css';
+
+
 
 
 

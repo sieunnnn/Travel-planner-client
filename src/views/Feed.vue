@@ -40,7 +40,7 @@ const handleFeedSearch = async (query) => {
 
 <template>
   <div class="feed-container">
-    <div class="title">
+    <div class="title" style="top: 40px; position: relative;">
       FEED
     </div>
 
