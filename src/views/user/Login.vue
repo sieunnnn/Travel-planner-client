@@ -44,7 +44,7 @@ const login = async () => {
 
 
 <template>
-  <div class="login_container">
+  <div class="login_container box">
     <div class="login_logo_container">
       <img src="../../assets/images/logo_big.svg" width="160" style="margin: 15px">
     </div>
@@ -86,12 +86,6 @@ const login = async () => {
     width: 40%;
     height: 85%;
     flex-shrink: 0;
-
-    border-radius: 20px;
-    border: 1px solid #1E1E1C;
-    background: rgba(255, 255, 255, 0.80);
-    box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.20);
-    backdrop-filter: blur(20px);
   }
 
   .login_content {
