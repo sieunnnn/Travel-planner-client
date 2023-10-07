@@ -47,7 +47,7 @@
     <div class="img-container" style="width: 100%; margin: 50px 0 35px 0">
       <router-link to="/profile">
         <div class="img-contents">
-          <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125" style="margin: 5px 0 0 5px"/>
+          <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125"/>
           <img v-else src="../assets/images/basic_profile.svg" width="125" style="margin: 5px 0 0 5px"/>
         </div>
       </router-link>
