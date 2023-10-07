@@ -3,6 +3,7 @@ import Feed from '../views/Feed.vue';
 import Login from '../views/user/Login.vue';
 import Signup from "../views/user/Signup.vue";
 import Oauth from "../views/user/Oauth.vue";
+import Profile from "../views/Profile.vue";
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
     {
         path: '/feed',
         component: Feed
+    },
+    {
+        path: '/profile',
+        component: Profile
     }
 ];
 
