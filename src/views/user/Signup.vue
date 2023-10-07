@@ -83,10 +83,10 @@
       </div>
       <div class="signup_form">
         <form>
-          <input type="text" v-model="email" placeholder="이메일을 입력해주세요."><br>
-          <input type="text" v-model="userNickname" placeholder="닉네임을 입력해주세요."><br>
-          <input type="password" v-model="password" placeholder="비밀번호를 입력해주세요."><br>
-          <input type="password" v-model="confirmPassword" placeholder="비밀번호를 다시한번 입력해 주세요."><br>
+          <input class="input" type="text" v-model="email" placeholder="이메일을 입력해주세요."><br>
+          <input class="input" type="text" v-model="userNickname" placeholder="닉네임을 입력해주세요."><br>
+          <input class="input" type="password" v-model="password" placeholder="비밀번호를 입력해주세요."><br>
+          <input class="input" type="password" v-model="confirmPassword" placeholder="비밀번호를 다시한번 입력해 주세요."><br>
           <p v-if="passwordError">{{ passwordError }}</p>
           <p v-else-if="!passwordError"></p>
           <div class="signup_button_container">
