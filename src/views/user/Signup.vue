@@ -145,18 +145,8 @@
   flex-shrink: 0;
   margin-bottom: 15px;
 
-  border-radius: 10px;
-  border: 1px solid #1E1E1C;
-  background: rgba(255, 255, 255, 0.90);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.10) inset;
-
   padding-left: 10px;
   font-size: 17px;
-}
-
-.signup_form input:focus {
-  outline: none;
-  border: 2.5px solid rgba(58, 108, 217, 0.6);
 }
 
 .signup_form p {
