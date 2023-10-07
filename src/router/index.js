@@ -4,6 +4,8 @@ import Login from '../views/user/Login.vue';
 import Signup from "../views/user/Signup.vue";
 import Oauth from "../views/user/Oauth.vue";
 import Profile from "../views/Profile.vue";
+import UserDelete from "../components/profile/UserDelete.vue";
+import UserEdit from "../components/profile/UserEdit.vue";
 
 const routes = [
     {
@@ -24,7 +26,17 @@ const routes = [
     },
     {
         path: '/profile',
-        component: Profile
+        component: Profile,
+        children: [
+            {
+                path:'update',
+                component: UserEdit
+            },
+            {
+                path: 'delete',
+                component: UserDelete
+            }
+        ]
     }
 ];
 

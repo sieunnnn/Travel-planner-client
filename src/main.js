@@ -11,6 +11,8 @@ import "bootstrap/dist/css/bootstrap.min.css" // bootstrap
 import "bootstrap"
 import './assets/styles/typo.css';
 import './assets/styles/box.css';
+import './assets/styles/input.css';
+
 
 library.add(fas) // font awsome
 library.add(far)
