@@ -10,6 +10,7 @@ const route = useRoute();
 const router = useRouter();
 const store = useStore();
 
+const userId = ref('');
 const email = ref('');
 const nickname = ref('');
 const provider = ref('');
@@ -17,6 +18,7 @@ const profileImgUrl = ref('');
 const token = ref('');
 
 onMounted(() => {
+  userId.value = route.query.userId;
   email.value = route.query.email;
   nickname.value = route.query.nickname;
   provider.value = route.query.provider;
@@ -28,6 +30,7 @@ onMounted(() => {
   }
 
   const userInfo = {
+    userId: userId.value,
     email: email.value,
     nickname: nickname.value,
     provider: provider.value,
