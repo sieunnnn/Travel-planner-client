@@ -10,6 +10,7 @@
 
   const user = computed(() => store.state.loginUser);
   const userProfileImgUrl = computed(() => store.getters.getUserProfileImgUrl);
+  const userId = computed(() => store.getters.getUserId).value;
   const isLoggedIn = computed(() => user.value && user.value.isLoggedIn);
 
   const logout = async () => {
@@ -45,7 +46,7 @@
 
     <!-- 유저 프로필 이미지 -->
     <div class="img-container" style="width: 100%; margin: 50px 0 35px 0">
-      <router-link to="/profile">
+      <router-link :to="`/profile?userId=${userId}`">
         <div class="img-contents">
           <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125"/>
           <img v-else src="../assets/images/basic_profile.svg" width="125" style="margin: 5px 0 0 5px"/>

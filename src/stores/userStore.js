@@ -21,6 +21,9 @@ export default ({
         loginUser: state => state.loginUser,
         getUserProfileImgUrl: (state) => {
             return state.loginUser && state.loginUser.profileImgUrl;
+        },
+        getUserId: (state) => {
+            return state.loginUser && state.loginUser.userId;
         }
     },
 
