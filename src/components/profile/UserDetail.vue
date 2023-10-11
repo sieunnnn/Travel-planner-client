@@ -9,7 +9,7 @@ const props = defineProps({
 
 // watchEffect(() => {
 //   console.log('profileImgUrl:', props.profileImgUrl);
-//   console.log('email:', props.email);
+//   // console.log('email:', props.email);
 //   console.log('userNickname:', props.userNickname);
 // });
 </script>
@@ -24,7 +24,7 @@ const props = defineProps({
         </div>
       </div>
       <div class="sub_title_200" style="margin-left: 10px">
-        {{ props.userNickname }}
+        {{ userNickname }}
       </div>
     </div>
   </div>
