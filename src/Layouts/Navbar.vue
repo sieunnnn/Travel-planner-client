@@ -20,6 +20,7 @@
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('userInfo');
         store.commit('logout');
+        await router.push('/auth/login');
       }
     } catch (error) {
       console.log(error);
@@ -28,7 +29,6 @@
 
   const toggleLogin = () => {
     if (!isLoggedIn.value) {
-
       router.push('/auth/login');
     } else {
       logout()
