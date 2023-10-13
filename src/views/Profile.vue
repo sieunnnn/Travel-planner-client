@@ -53,12 +53,17 @@ onBeforeRouteUpdate(async (to, from) => {
 
 onMounted(getProfile);
 
+const handleProfileUpdate = (updatedProfile) => {
+  userNickname.value = updatedProfile.userNickname;
+  profileImgUrl.value = updatedProfile.profileImgUrl;
+  getProfile()
+}
 </script>
 
 <template>
   <div class="profile_container">
     <div class="profile_content_container box">
-      <router-view :profileImgUrl="profileImgUrl" :userNickname="userNickname"/>
+      <router-view :profileImgUrl="profileImgUrl" :userNickname="userNickname" @profileUpdated="handleProfileUpdate"/>
     </div>
     <div class="profile_button_container box">
       <router-link to="/profile/update" style="margin-top: 10px" v-if="checkUser">
