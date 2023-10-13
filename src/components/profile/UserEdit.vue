@@ -103,7 +103,6 @@ const patchUserProfile = async () => {
 
 
 let passwordValidated = ref(false);
-let newPasswordValidated = ref(true);
 const currPassword = ref('');
 const checkPassword = async () => {
   try {
@@ -130,6 +129,8 @@ const checkPassword = async () => {
 
 
 const newPassword = ref('');
+let newPasswordValidated = ref(true);
+
 const isPasswordValid = (password) => {
   const lengthRegex = /^.{8,15}$/;
   const letterRegex = /[A-Za-z]/;

@@ -2,11 +2,36 @@
 
   import { ref } from 'vue';
   import ProfileHeader from "./ProfileHeader.vue";
+  import axios from "axios";
+  import {createRouter as route} from "vue-router";
+
+  const accessToken = sessionStorage.getItem("accessToken");
   const showDeleteContainer = ref(false);
 
   function showDeleteDialog() {
         showDeleteContainer.value = true;
   }
+
+  const currPassword = ref('');
+  const deleteUser = async () => {
+    try {
+      const requestBody = {
+        password: currPassword.value
+      };
+
+      await axios.delete('/profile/user/delete', {
+        headers: {
+          'Authorization': `${accessToken}`,
+          'Content-Type': 'application/json'
+        },
+        data: requestBody
+      });
+
+      route.push('/auth/login');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 </script>
 
 <template>
@@ -20,8 +45,8 @@
     </div>
     <div v-if="showDeleteContainer" class="user_delete_input_container">
       <div class="sub_title">회원 탈퇴를 진행하기 위해 비밀번호를 입력 해주세요.</div>
-      <form class="edit_form">
-        <input type="text" class="edit_input input">
+      <form class="edit_form" @submit.prevent="deleteUser">
+        <input type="password" class="edit_input input" v-model="currPassword">
         <button type="submit" class="blue_button">변경</button>
       </form>
     </div>
