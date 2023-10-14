@@ -28,10 +28,12 @@ const routes = [
     {
         path: '/profile',
         component: Profile,
+        props: true,
         children: [
             {
-              path: '',
-              component: UserDetail
+                path: '',
+                component: UserDetail,
+                props: true,
             },
             {
                 path:'update',

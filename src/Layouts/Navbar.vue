@@ -3,15 +3,28 @@
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
   import { useRouter } from 'vue-router';
   import axios from "axios";
-  import {computed} from "vue";
+  import {computed, onMounted, onUnmounted, ref} from "vue";
+  import eventBus from "../util/eventBus.js";
 
   const router = useRouter();
   const store = useStore();
 
   const user = computed(() => store.state.loginUser);
   const userProfileImgUrl = computed(() => store.getters.getUserProfileImgUrl);
+  const userId = ref(store.getters.getUserId);
   const isLoggedIn = computed(() => user.value && user.value.isLoggedIn);
 
+  const handleLoginSuccess = (data) => {
+    userId.value = data.userId;
+  }
+
+  onMounted(() => {
+    eventBus.on('login-success', handleLoginSuccess);
+  });
+
+  onUnmounted(() => {
+    eventBus.off('login-success', handleLoginSuccess);
+  });
   const logout = async () => {
     try {
       const response = await axios.post('/auth/logout');
@@ -19,6 +32,7 @@
         sessionStorage.removeItem('accessToken');
         sessionStorage.removeItem('userInfo');
         store.commit('logout');
+        await router.push('/auth/login');
       }
     } catch (error) {
       console.log(error);
@@ -27,7 +41,6 @@
 
   const toggleLogin = () => {
     if (!isLoggedIn.value) {
-
       router.push('/auth/login');
     } else {
       logout()
@@ -45,9 +58,9 @@
 
     <!-- 유저 프로필 이미지 -->
     <div class="img-container" style="width: 100%; margin: 50px 0 35px 0">
-      <router-link to="/profile">
+      <router-link :to="`/profile?userId=${userId}`">
         <div class="img-contents">
-          <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125" style="margin: 5px 0 0 5px"/>
+          <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="125"/>
           <img v-else src="../assets/images/basic_profile.svg" width="125" style="margin: 5px 0 0 5px"/>
         </div>
       </router-link>

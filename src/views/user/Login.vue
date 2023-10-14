@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from 'vue-router';
 import { useStore } from "vuex";
 import axios from "axios";
+import eventBus from "../../util/eventBus.js";
 
 const router = useRouter();
 const store = useStore();
@@ -34,6 +35,7 @@ const login = async () => {
       }
 
       store.commit('setLoginUser', userInfo);
+      eventBus.emit('login-success', userInfo);
       await router.push('/feed');
     }
   } catch (error) {

@@ -57,3 +57,10 @@
     color: #1E1E1C;
     z-index: 999;
 }
+
+.sub_title_200 {
+    font-family: 'pre-extrabold', sans-serif;
+    font-size: 40px;
+    color: #1E1E1C;
+    z-index: 999;
+}
