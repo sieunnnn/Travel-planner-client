@@ -3,16 +3,28 @@
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
   import { useRouter } from 'vue-router';
   import axios from "axios";
-  import {computed} from "vue";
+  import {computed, onMounted, onUnmounted, ref} from "vue";
+  import eventBus from "../util/eventBus.js";
 
   const router = useRouter();
   const store = useStore();
 
   const user = computed(() => store.state.loginUser);
   const userProfileImgUrl = computed(() => store.getters.getUserProfileImgUrl);
-  const userId = computed(() => store.getters.getUserId).value;
+  const userId = ref(store.getters.getUserId);
   const isLoggedIn = computed(() => user.value && user.value.isLoggedIn);
 
+  const handleLoginSuccess = (data) => {
+    userId.value = data.userId;
+  }
+
+  onMounted(() => {
+    eventBus.on('login-success', handleLoginSuccess);
+  });
+
+  onUnmounted(() => {
+    eventBus.off('login-success', handleLoginSuccess);
+  });
   const logout = async () => {
     try {
       const response = await axios.post('/auth/logout');

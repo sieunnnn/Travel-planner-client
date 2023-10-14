@@ -7,6 +7,7 @@ import {ref, onMounted} from 'vue';
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import router from "../../router/index.js";
+import eventBus from "../../util/eventBus.js";
 
 const route = useRoute();
 const store = useStore();
@@ -41,6 +42,8 @@ onMounted(() => {
   if (userInfo) {
     sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
     store.commit('setLoginUser', userInfo);
+    // 로그인 성공 이벤트 발송
+    eventBus.emit('login-success', userInfo);
   }
 
   router.push('/feed');
