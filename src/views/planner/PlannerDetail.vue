@@ -1,6 +1,14 @@
 <script setup>
 import BackButton from "../../components/common/BackButton.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import ModalComponent from "../../components/common/Modal.vue";
+
+const openModal = (modalId) => {
+  const modalElement = document.getElementById(modalId);
+  const modalInstance = new bootstrap.Modal(modalElement);
+  modalInstance.show();
+};
+
 </script>
 
 <template>
@@ -21,6 +29,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
         <ul class="dropdown-menu">
           <li>🧾<span>가계부</span></li>
           <li>💬<span>그룹 채팅</span></li>
+          <li>⚙️<span>그룹 멤버 관리</span></li>
           <li>🗽<span>여행지 추천</span></li>
           <li>💁‍♀️<span>도움말</span></li>
         </ul>
@@ -53,8 +62,16 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
     <div class="planner_list_content">
       <div class="date_box" style="margin-bottom: 20px">
       </div>
-      <div class="add_box">
-      </div>
+      <button class="add_box" data-bs-toggle="modal" data-bs-target="#plannerAddModal" @click="openModal('plannerAddModal')">
+      </button>
+      <ModalComponent :modalId="'plannerAddModal'">
+        <template #title>
+          첫 번째 모달의 제목
+        </template>
+        <template #body>
+          첫 번째 모달의 본문 내용...
+        </template>
+      </ModalComponent>
       <div>
       </div>
     </div>
