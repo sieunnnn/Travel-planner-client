@@ -16,3 +16,21 @@
         color: white;
         background: #8E8E93;
     }
+
+    .red_button {
+        font-family: 'pre-medium', sans-serif;
+        border-radius: 10px;
+        border: 1px solid #1E1E1C;
+        outline: none;
+        color: white;
+        background: #FF3B30;
+    }
+
+    .green_button {
+        font-family: 'pre-medium', sans-serif;
+        border-radius: 10px;
+        border: 1px solid #1E1E1C;
+        outline: none;
+        color: white;
+        background: #34C759;
+    }
