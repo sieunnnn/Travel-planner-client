@@ -2,6 +2,8 @@
 import BackButton from "../../components/common/BackButton.vue";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import ModalComponent from "../../components/common/Modal.vue";
+import GroupMemberSearch from "../../components/planner/GroupMemberSearch.vue";
+import GroupMemberEdit from "../../components/planner/GroupMemberEdit.vue";
 
 const openModal = (modalId) => {
   const modalElement = document.getElementById(modalId);
@@ -28,8 +30,8 @@ const openModal = (modalId) => {
         </button>
         <ul class="dropdown-menu">
           <li>🧾<span>가계부</span></li>
-          <li>💬<span>그룹 채팅</span></li>
-          <li>⚙️<span>그룹 멤버 관리</span></li>
+          <li data-bs-toggle="modal" data-bs-target="#chatModal" @click="openModal('chatModal')">💬<span>그룹 채팅</span></li>
+          <li data-bs-toggle="modal" data-bs-target="#groupMemberEditModal" @click="openModal('groupMemberEditModal')">⚙️<span>그룹 멤버 관리</span></li>
           <li>🗽<span>여행지 추천</span></li>
           <li>💁‍♀️<span>도움말</span></li>
         </ul>
@@ -39,7 +41,9 @@ const openModal = (modalId) => {
 
   <!-- 그룹멤버 추가 / 그룹멤버 리스트 -->
   <div class="planner_group_member_container">
-    <div class="img-contents" style="width: 60px; height: 60px; margin-right: 10px; background-color: rgba(0, 0, 0, 0.25);">
+    <div class="img-contents"
+         style="width: 60px; height: 60px; margin-right: 10px; background-color: rgba(0, 0, 0, 0.25);"
+         data-bs-toggle="modal" data-bs-target="#groupMemberAddModal" @click="openModal('groupMemberAddModal')">
       <font-awesome-icon icon="fa-solid fa-user-plus" style="font-size: 25px; margin-left: 8px; color: white" />
     </div>
     <div class="group_member_list">
@@ -93,10 +97,48 @@ const openModal = (modalId) => {
     </div>
     <!-- 플래너 리스트 추가 버튼 -->
     <div class="planner_list_content">
-      <div class="add_box">
-      </div>
+      <button class="add_box" data-bs-toggle="modal" data-bs-target="#plannerListAddModal" @click="openModal('plannerListAddModal')">
+      </button>
+      <ModalComponent :modalId="'plannerListAddModal'">
+        <template #title>
+          두 번째 모달의 제목
+        </template>
+        <template #body>
+          두 번째 모달의 본문 내용...
+        </template>
+      </ModalComponent>
     </div>
   </div>
+
+  <!-- 그룹 멤버 추가 모달 -->
+  <ModalComponent :modalId="'groupMemberAddModal'">
+    <template #title>
+      그룹 멤버 모달
+    </template>
+    <template #body>
+      <GroupMemberSearch />
+    </template>
+  </ModalComponent>
+
+  <!-- 채팅 모달 -->
+  <ModalComponent :modalId="'chatModal'">
+    <template #title>
+      채팅모달
+    </template>
+    <template #body>
+      채팅 모달
+    </template>
+  </ModalComponent>
+
+  <!-- 그룹멤버 관리 모달 -->
+  <ModalComponent :modalId="'groupMemberEditModal'">
+    <template #title>
+      그룹 멤버 관리
+    </template>
+    <template #body>
+      <GroupMemberEdit/>
+    </template>
+  </ModalComponent>
 </div>
 </template>
 
