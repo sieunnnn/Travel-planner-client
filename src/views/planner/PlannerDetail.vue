@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import ModalComponent from "../../components/common/Modal.vue";
 import GroupMemberSearch from "../../components/planner/GroupMemberSearch.vue";
 import GroupMemberEdit from "../../components/planner/GroupMemberEdit.vue";
+import Chatting from "../../components/planner/Chatting.vue";
 
 const openModal = (modalId) => {
   const modalElement = document.getElementById(modalId);
@@ -65,32 +66,19 @@ const openModal = (modalId) => {
     <!-- 반복되는 요소 -->
     <div class="planner_list_content">
       <div class="date_box" style="margin-bottom: 20px">
-      </div>
-      <button class="add_box" data-bs-toggle="modal" data-bs-target="#plannerAddModal" @click="openModal('plannerAddModal')">
-      </button>
-      <ModalComponent :modalId="'plannerAddModal'">
-        <template #title>
-          첫 번째 모달의 제목
-        </template>
-        <template #body>
-          첫 번째 모달의 본문 내용...
-        </template>
-      </ModalComponent>
-      <div>
-      </div>
-    </div>
-    <div class="planner_list_content">
-      <div class="date_box" style="margin-bottom: 20px">
-      </div>
-      <div class="add_box">
-      </div>
-      <div>
-      </div>
-    </div>
-    <div class="planner_list_content">
-      <div class="date_box" style="margin-bottom: 20px">
-      </div>
-      <div class="add_box">
+        <div>
+          2023. 11. 20
+        </div>
+        <div class="btn-group dropend planner_icons">
+          <button type="button" class="dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+            <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" style="font-size: 20px; color: white"/>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li data-bs-toggle="modal" data-bs-target="#dateEditModal" @click="openModal('dateEditModal')">📆️<span>날짜 수정</span></li>
+            <li data-bs-toggle="modal" data-bs-target="#dateDeleteModal" @click="openModal('dateDeleteModal')">🗑️️<span>날짜 삭제</span></li>
+            <li data-bs-toggle="modal" data-bs-target="#plannerAddModal" @click="openModal('plannerAddModal')">🆕️<span>플래너 추가</span></li>
+          </ul>
+        </div>
       </div>
       <div>
       </div>
@@ -98,15 +86,8 @@ const openModal = (modalId) => {
     <!-- 플래너 리스트 추가 버튼 -->
     <div class="planner_list_content">
       <button class="add_box" data-bs-toggle="modal" data-bs-target="#plannerListAddModal" @click="openModal('plannerListAddModal')">
+        <font-awesome-icon icon="fa-regular fa-calendar-plus"/>
       </button>
-      <ModalComponent :modalId="'plannerListAddModal'">
-        <template #title>
-          두 번째 모달의 제목
-        </template>
-        <template #body>
-          두 번째 모달의 본문 내용...
-        </template>
-      </ModalComponent>
     </div>
   </div>
 
@@ -120,13 +101,131 @@ const openModal = (modalId) => {
     </template>
   </ModalComponent>
 
-  <!-- 채팅 모달 -->
-  <ModalComponent :modalId="'chatModal'">
+  <!-- 날짜 추가 모달 -->
+  <ModalComponent :modalId="'plannerListAddModal'">
     <template #title>
-      채팅모달
+      ✅ 여행 날짜 선택
     </template>
     <template #body>
-      채팅 모달
+      <div style="display: flex; flex-direction: row; align-items: center; margin-top: 15px">
+        <input type="date" class="input" style="padding: 0 10px; margin-right: 10px; width: 70%">
+        <button type="submit" class="blue_button" style="height: 36px; font-size: 18px; padding: 0 10px">전송</button>
+      </div>
+    </template>
+  </ModalComponent>
+
+  <!-- 날짜 수정 모달 -->
+  <ModalComponent :modalId="'dateEditModal'">
+    <template #title>
+      여행 날짜 수정
+    </template>
+    <template #body>
+      <div style="display: flex; flex-direction: row; align-items: center; margin-top: 15px">
+        <input type="date" class="input" style="padding: 0 10px; margin-right: 10px; width: 70%">
+        <button type="submit" class="blue_button" style="height: 36px; font-size: 18px; padding: 0 10px">전송</button>
+      </div>
+    </template>
+  </ModalComponent>
+
+  <!-- 날짜 alert -->
+
+  <!-- 플래너 추가 모달 -->
+  <ModalComponent :modalId="'plannerAddModal'">
+    <template #title>
+      플래너 추가
+    </template>
+    <template #body>
+      <div style="display: flex; flex-direction: column">
+        <div>
+          <input type="checkbox" style="width: 16px; height: 14px; margin-right: 5px">
+          <span style="font-size: 18px; font-family: 'pre-medium', sans-serif">비공개</span>
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">플래너 제목</div>
+          <input type="text" class="input_small">
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">시간</div>
+          <input type="time" class="input_small">
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">카테고리</div>
+          <select class="input_small"></select>
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">예산</div>
+          <input type="text" class="input_small">
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">일정 주소</div>
+          <input type="text" class="input_small">
+        </div>
+        <div style="margin: 10px 0 20px 0">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">일정 내용</div>
+          <textarea class="input_small" style="height: 100px; margin-top: 5px"></textarea>
+        </div>
+        <button type="submit" class="blue_button" style="width: 90%">전송</button>
+      </div>
+    </template>
+  </ModalComponent>
+
+  <!-- 플래너 수정 모달 -->
+  <ModalComponent :modalId="'plannerAddModal'">
+    <template #title>
+      플래너 수정
+    </template>
+    <template #body>
+      <div style="display: flex; flex-direction: column">
+        <div>
+          <input type="checkbox" style="width: 16px; height: 14px; margin-right: 5px">
+          <span style="font-size: 18px; font-family: 'pre-medium', sans-serif">비공개</span>
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">플래너 제목</div>
+          <input type="text" class="input_small">
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">시간</div>
+          <input type="time" class="input_small">
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">카테고리</div>
+          <select class="input_small"></select>
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">예산</div>
+          <input type="text" class="input_small">
+        </div>
+        <div style="margin-top: 10px">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">일정 주소</div>
+          <input type="text" class="input_small">
+        </div>
+        <div style="margin: 10px 0 20px 0">
+          <div style="font-size: 20px; font-family: 'pre-bold', sans-serif">일정 내용</div>
+          <textarea class="input_small" style="height: 100px; margin-top: 5px"></textarea>
+        </div>
+        <button type="submit" class="blue_button" style="width: 90%">전송</button>
+      </div>
+    </template>
+  </ModalComponent>
+
+  <!-- 플래너 삭제 모달 -->
+  <ModalComponent :modalId="'plannerAddModal'">
+    <template #title>
+      첫 번째 모달의 제목
+    </template>
+    <template #body>
+      첫 번째 모달의 본문 내용...
+    </template>
+  </ModalComponent>
+
+  <!-- 채팅 모달 -->
+  <ModalComponent :modalId="'chatModal'" class="chatting_modal">
+    <template #title>
+      <span> </span>
+    </template>
+    <template #body>
+      <Chatting/>
     </template>
   </ModalComponent>
 
@@ -163,7 +262,7 @@ const openModal = (modalId) => {
    justify-content: space-between;
    align-items: center;
 
-   border-radius: 0px 20px 0px 0px;
+   border-radius: 0 20px 0 0;
    border-bottom: 1px solid #1E1E1C;
    background: rgba(255, 255, 255, 0.80);
    backdrop-filter: blur(20px);
@@ -198,7 +297,7 @@ const openModal = (modalId) => {
    font-family: 'pre-medium', sans-serif;
    width: 220px;
    border: #1E1E1C 1px solid;
-   box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10);
+   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
  }
 
  .dropdown-menu span {
@@ -247,7 +346,7 @@ const openModal = (modalId) => {
  }
 
  .planner_list_container::-webkit-scrollbar {
-   width: 15px;
+   width: 10px;
  }
 
  .planner_list_container::-webkit-scrollbar-track {
@@ -273,7 +372,7 @@ const openModal = (modalId) => {
  }
 
  .planner_list_content::-webkit-scrollbar {
-   width: 15px;
+   width: 10px;
  }
 
  .planner_list_content::-webkit-scrollbar-track {
@@ -290,18 +389,36 @@ const openModal = (modalId) => {
  }
 
  .date_box {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 15px 0 30px;
+
    width: 100%;
    height: 55px;
    border-radius: 15px;
    border: 1px solid #1E1E1C;
    background: #0A84FF;
+
+   font-family: 'pre-bold', sans-serif;
+   font-size: 24px;
+   color: white;
  }
 
  .add_box {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+
    width: 100%;
    height: 55px;
    border-radius: 13px;
    border: 1px solid #1E1E1C;
    background: rgba(255, 255, 255, 0.5);
+
+   font-size: 24px;
+   color: #6C6C70;
  }
 </style>
