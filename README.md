@@ -23,6 +23,7 @@
 # 배포주소
 - vercel 로 자동배포를 걸어두었습니다.
 - 현재 소셜로그인 기능은 사용할 수 없어요! 🙅‍♀️
+
 🔗 https://our.travel-planner.xyz/
 
 <br>
