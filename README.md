@@ -25,6 +25,7 @@
 - 현재 소셜로그인 기능은 사용할 수 없어요! 🙅‍♀️
 🔗 https://our.travel-planner.xyz/
 
+<br>
 
 # 𝙎𝙏𝘼𝘾𝙆 & 𝙏𝙊𝙊𝙇
 <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=flat&logo=vuedotjs&logoColor=white" height="25px"/> <img src="https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white" height="25px"/> <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white" height="25px"/> <img src="https://img.shields.io/badge/Vercel-black?style=flat&logo=vercel&logoColor=white" height="25px"/> <img src="https://img.shields.io/badge/Figma-black?style=flat&logo=figma&logoColor=white" height="25px"/> <img src="https://img.shields.io/badge/IntelliJ IDEA-black?style=flat&logo=intellijidea&logoColor=white" height="25px"/> 
