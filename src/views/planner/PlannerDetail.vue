@@ -81,6 +81,49 @@ const openModal = (modalId) => {
         </div>
       </div>
       <div>
+        <div class="planner_content">
+          <div class="planner_header" style="margin-bottom: 5px">
+            <div>
+              <font-awesome-icon icon="fa-solid fa-lock" style="margin-right: 10px;" />
+              <font-awesome-icon icon="fa-solid fa-lock-open"  style="margin-right: 10px;" />
+            </div>
+            <div>
+              <div class="btn-group dropend planner_icons">
+                <button type="button" class="dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" style="font-size: 16px;" />
+                </button>
+                <ul class="dropdown-menu">
+                  <li data-bs-toggle="modal" data-bs-target="#plannerEditModal" @click="openModal('plannerEditModal')">🖋️️<span>플래너 수정</span></li>
+                  <li>🗑️️<span>플래너 삭제</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="planner">
+            <div style="font-family: 'pre-bold', sans-serif; font-size: 24px">
+              타이틀
+            </div>
+            <div class="line" style="margin: 5px 0 7px 0"></div>
+            <div class="planner_icons" style="font-family: 'pre-medium', sans-serif;" >
+              <div>
+                ⏰ 시간
+              </div>
+              <div class="tag">
+                카테고리
+              </div>
+              <div>
+                💰10000
+              </div>
+            </div>
+            <div style="color: #636366">
+              📍 경기도 광명시 어쩌구
+            </div>
+            <div class="line" style="margin: 7px 0"></div>
+            <div style="font-size: 18px">
+              맛집갈거임
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- 플래너 리스트 추가 버튼 -->
@@ -170,7 +213,7 @@ const openModal = (modalId) => {
   </ModalComponent>
 
   <!-- 플래너 수정 모달 -->
-  <ModalComponent :modalId="'plannerAddModal'">
+  <ModalComponent :modalId="'plannerEditModal'">
     <template #title>
       플래너 수정
     </template>
@@ -209,15 +252,7 @@ const openModal = (modalId) => {
     </template>
   </ModalComponent>
 
-  <!-- 플래너 삭제 모달 -->
-  <ModalComponent :modalId="'plannerAddModal'">
-    <template #title>
-      첫 번째 모달의 제목
-    </template>
-    <template #body>
-      첫 번째 모달의 본문 내용...
-    </template>
-  </ModalComponent>
+  <!-- 플래너 alert -->
 
   <!-- 채팅 모달 -->
   <ModalComponent :modalId="'chatModal'" class="chatting_modal">
@@ -393,16 +428,16 @@ const openModal = (modalId) => {
    flex-direction: row;
    justify-content: space-between;
    align-items: center;
-   padding: 0 15px 0 30px;
+   padding: 0 10px 0 25px;
 
    width: 100%;
    height: 55px;
-   border-radius: 15px;
+   border-radius: 13px;
    border: 1px solid #1E1E1C;
    background: #0A84FF;
 
    font-family: 'pre-bold', sans-serif;
-   font-size: 24px;
+   font-size: 26px;
    color: white;
  }
 
@@ -420,5 +455,45 @@ const openModal = (modalId) => {
 
    font-size: 24px;
    color: #6C6C70;
+ }
+
+ .planner_content {
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-content: center;
+
+   width: 100%;
+   border: 1px solid #1E1E1C;
+   border-radius: 13px;
+
+   background-color: white;
+ }
+
+ .planner_header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-content: center;
+
+   font-size: 14px;
+   color: #6C6C70;
+   padding: 20px 10px 0 23px;
+ }
+
+ .planner {
+   padding: 0 15px 30px 20px;
+ }
+
+ .tag {
+   margin: 0 10px;
+   padding: 0 7px;
+   color: #1E1E1C;
+   font-family: 'pre-medium', sans-serif;
+   font-size: 14px;
+
+   border-radius: 8px;
+   background-color: transparent;
+   border: #1E1E1C 1px solid;
  }
 </style>
