@@ -37,18 +37,16 @@
 |---|---|---|
 |🔚 완료|프로젝트 생성과 환경설정|https://github.com/sieunnnn/Travel-planner-client/issues/1|
 |🔚 완료|공통 레이아웃 생성|https://github.com/sieunnnn/Travel-planner-client/issues/2|
-|🔚 완료|피드 기능 <br> - 유저가 개설한 플래너를 한번에 볼 수 있습니다.|https://github.com/sieunnnn/Travel-planner-client/issues/3 https://github.com/sieunnnn/Travel-planner-client/issues/6|
+|🔚 완료|피드 기능 <br> - 유저가 개설한 플래너를 한번에 볼 수 있습니다. <br> - 유저가 비공개 플래너로 설정한 플래너는 보이지 않아요!|https://github.com/sieunnnn/Travel-planner-client/issues/3 https://github.com/sieunnnn/Travel-planner-client/issues/6|
 |🔚 완료|일반 로그인과 소셜 로그인 기능|https://github.com/sieunnnn/Travel-planner-client/issues/8 https://github.com/sieunnnn/Travel-planner-client/issues/10|
-|🔚 완료|프로필 기능 <br> - 유저의 프로필 이미지를 수정할 수 있습니다. <br> - 유저의 개인 정보를 수정할 수 있습니다.|https://github.com/sieunnnn/Travel-planner-client/issues/12 https://github.com/sieunnnn/Travel-planner-client/issues/14|
+|🔚 완료|프로필 기능 <br> ✅ 유저의 프로필 이미지를 수정할 수 있습니다. <br> ✅ 유저의 개인 정보를 수정할 수 있습니다.|https://github.com/sieunnnn/Travel-planner-client/issues/12 https://github.com/sieunnnn/Travel-planner-client/issues/14|
 |🔚 진행중|플래너 기능 <br> ✅ 플래너 리스트 기능 <br> ❎ 플래너 상세 기능|https://github.com/sieunnnn/Travel-planner-client/issues/16 https://github.com/sieunnnn/Travel-planner-client/issues/18|
 
 <br>
 
 ## 기능 외 해야할 작업
-- [ ] **유저 권한 별 페이지 분리**
-- 보여줘서는 안되는 페이지, 요소 잘 감춰지는지 점검 하기
-- [ ] **웹토큰 인증로직과 api 분리하기**
-- composition api 의 장점인 재사용성 높이기
+- [ ] **유저 권한 별 페이지 분리** : 보여줘서는 안되는 페이지, 요소 잘 감춰지는지 점검 하기
+- [ ] **웹토큰 인증로직과 api 분리하기** : composition api 의 장점인 재사용성 높이기
 
   <br>
   <br>
