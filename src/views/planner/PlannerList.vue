@@ -148,7 +148,7 @@ const createPlanner = async (formData) => {
           <button @click="createPlanner(data)" type="button" class="blue_button" style="width: 50px; font-size: 17px;">등록</button>
         </form>
       </div>
-      <div v-for ="planner in plannerList" :key="planner.plannerId" class="planner_container">
+      <router-link :to="`/planner/${planner.plannerId}`" v-for ="planner in plannerList" :key="planner.plannerId" class="planner_container">
         <div class="planner_container_header">
           <div>
             <font-awesome-icon v-if="planner.isPrivate" icon="fa-solid fa-lock" style="margin-right: 10px"/>
@@ -184,7 +184,7 @@ const createPlanner = async (formData) => {
             <img v-else src="../../assets/images/basic_profile.svg" width="40" style="margin:2px 0 0 2px;"/>
           </div>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -233,6 +233,11 @@ const createPlanner = async (formData) => {
    flex-shrink: 0;
    padding: 15px 20px;
    text-overflow : ellipsis;
+   text-decoration: none;
+ }
+
+ .planner_container:visited {
+   color: #1E1E1C;
  }
 
  .planner_create_container {

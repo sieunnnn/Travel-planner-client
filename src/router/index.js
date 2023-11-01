@@ -8,6 +8,7 @@ import UserDelete from "../components/profile/UserDelete.vue";
 import UserEdit from "../components/profile/UserEdit.vue";
 import UserDetail from "../components/profile/UserDetail.vue";
 import PlannerList from "../views/planner/PlannerList.vue";
+import PlannerDetail from "../views/planner/PlannerDetail.vue";
 
 const routes = [
     {
@@ -49,6 +50,10 @@ const routes = [
     {
         path: '/planner',
         component: PlannerList
+    },
+    {
+        path: '/planner/:plannerId',
+        component: PlannerDetail
     }
 ];
 
