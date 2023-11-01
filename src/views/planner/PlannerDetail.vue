@@ -5,6 +5,7 @@ import ModalComponent from "../../components/common/Modal.vue";
 import GroupMemberSearch from "../../components/planner/GroupMemberSearch.vue";
 import GroupMemberEdit from "../../components/planner/GroupMemberEdit.vue";
 import Chatting from "../../components/planner/Chatting.vue";
+import axios from "axios";
 
 const openModal = (modalId) => {
   const modalElement = document.getElementById(modalId);

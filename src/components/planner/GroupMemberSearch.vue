@@ -1,34 +1,55 @@
 <script setup>
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import axios from "axios";
+import {ref} from "vue";
+
+const accessToken = sessionStorage.getItem("accessToken");
+const userData = ref([]);
+
+// groupMember api
+const email = ref("");
+const searchGroupMember = async (searchEmail) => {
+  try {
+    const response = await  axios.get('/search/member', {
+      headers: {
+        'Authorization' : `${accessToken}`
+      },
+      params: {
+        email: searchEmail
+      }
+    })
+
+    if (response.status === 200) {
+      userData.value = response.data;
+    }
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+const submitForm = async (event) => {
+  event.preventDefault();
+  await searchGroupMember(email.value);
+}
+
 </script>
 
 <template>
-  <form style="padding: 10px 0">
-    <input type="search" class="search-box">
+  <form @submit="submitForm" style="padding: 10px 0">
+    <input v-model="email" type="search" class="search-box">
     <button type="submit" class="search-button">
       <font-awesome-icon icon="fa-solid fa-magnifying-glass" style="margin-right: 5px; font-size: 16px" />
       <span>검색</span>
     </button>
   </form>
   <div>
-    <div class="user-container">
+    <div class="user-container" v-for="user in userData" :key="user.userId">
       <div class="user-content">
         <div class="img-contents" style="width: 40px; height: 40px; margin-right: 20px">
-          <img src="../../assets/images/basic_profile.svg" width="42" style="margin-left: 2px"/>
+          <img :src="user.profileImageUrl || '../../assets/images/basic_profile.svg'" width="42" style="margin-left: 2px"/>
         </div>
         <div class="user-title">
-          김시은
-        </div>
-      </div>
-      <button class="green_button"> 추가 </button>
-    </div>
-    <div class="user-container">
-      <div class="user-content">
-        <div class="img-contents" style="width: 40px; height: 40px; margin-right: 20px">
-          <img src="../../assets/images/basic_profile.svg" width="42" style="margin-left: 2px"/>
-        </div>
-        <div class="user-title">
-          김시은
+          {{ user.userNickname }}
         </div>
       </div>
       <button class="green_button"> 추가 </button>
