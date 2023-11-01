@@ -6,12 +6,33 @@ import GroupMemberSearch from "../../components/planner/GroupMemberSearch.vue";
 import GroupMemberEdit from "../../components/planner/GroupMemberEdit.vue";
 import Chatting from "../../components/planner/Chatting.vue";
 import axios from "axios";
+import {onMounted, ref} from "vue";
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const openModal = (modalId) => {
   const modalElement = document.getElementById(modalId);
   const modalInstance = new bootstrap.Modal(modalElement);
   modalInstance.show();
 };
+
+const plannerId = ref(route.params.plannerId);
+const plannerDetail = ref([]);
+
+const getPlannerDetail = async () => {
+  try {
+    const response = await axios.get(`/planner/${plannerId.value}`);
+
+    if (response.status === 200) {
+      plannerDetail.value = response.data;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+onMounted(getPlannerDetail);
 
 </script>
 
@@ -23,7 +44,7 @@ const openModal = (modalId) => {
       <BackButton style="font-size: 22px;"/>
     </div>
     <div class="planner_title">
-      신나는 제주 여행
+      {{ plannerDetail.planTitle }}
     </div>
     <div class="planner_icons" style="margin-top: 4px">
       <div class="btn-group dropdown">
@@ -49,12 +70,9 @@ const openModal = (modalId) => {
       <font-awesome-icon icon="fa-solid fa-user-plus" style="font-size: 25px; margin-left: 8px; color: white" />
     </div>
     <div class="group_member_list">
-      <div class="img-contents" style="width: 60px; height: 60px; margin-right: 10px">
-        <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="60"/>
-        <img v-else src="../../assets/images/basic_profile.svg" width="62" style="margin: 4px 0 0 3px; background-color: white"/>
-      </div>
-      <div class="img-contents" style="width: 60px; height: 60px">
-        <img v-if="userProfileImgUrl" :src="userProfileImgUrl" width="60"/>
+      <div v-for = "member in plannerDetail.groupMemberList" :key = "member.groupMemberId"
+           class="img-contents" style="width: 60px; height: 60px; margin-right: 10px; background-color: white">
+        <img v-if="member.profileImageUrl" :src="member.profileImageUrl" width="60"/>
         <img v-else src="../../assets/images/basic_profile.svg" width="62" style="margin: 4px 0 0 3px; background-color: white"/>
       </div>
     </div>
@@ -65,10 +83,10 @@ const openModal = (modalId) => {
   <!-- 플래너 리스트 -->
   <div class="planner_list_container">
     <!-- 반복되는 요소 -->
-    <div class="planner_list_content">
+    <div v-for ="calendar in plannerDetail.calendars" :key = "calendar.dateId" class="planner_list_content">
       <div class="date_box" style="margin-bottom: 20px">
         <div>
-          2023. 11. 20
+          {{ calendar.dateTitle }}
         </div>
         <div class="btn-group dropend planner_icons">
           <button type="button" class="dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
@@ -100,28 +118,28 @@ const openModal = (modalId) => {
               </div>
             </div>
           </div>
-          <div class="planner">
+          <div v-for="schedule in calendar.scheduleItemList" :key="schedule.itemId" class="planner">
             <div style="font-family: 'pre-bold', sans-serif; font-size: 24px">
-              타이틀
+              {{ schedule.itemTitle }}
             </div>
             <div class="line" style="margin: 5px 0 7px 0"></div>
             <div class="planner_icons" style="font-family: 'pre-medium', sans-serif;" >
               <div>
-                ⏰ 시간
+                ⏰ {{ schedule.itemTime }}
               </div>
               <div class="tag">
-                카테고리
+                {{ schedule.category }}
               </div>
               <div>
-                💰10000
+                💰{{ schedule.budget }}
               </div>
             </div>
             <div style="color: #636366">
-              📍 경기도 광명시 어쩌구
+              📍 {{ schedule.itemAddress }}
             </div>
             <div class="line" style="margin: 7px 0"></div>
             <div style="font-size: 18px">
-              맛집갈거임
+              {{ schedule.itemContent }}
             </div>
           </div>
         </div>
